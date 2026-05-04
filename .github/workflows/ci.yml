@@ -1,0 +1,33 @@
+name: Build Pipeline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./roman-number
+
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v3
+
+      - name: Setup Java JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Compilazione
+        run: mvn clean compile
+
+      - name: Esecuzione dei test
+        run: mvn test
+
+      - name: Analisi statica del codice (Checkstyle)
+        run: mvn package -DskipTests #usiamo questo parametro per soddisfare il requisito della consegna "distinguere facilmente la causa del fallimento"
