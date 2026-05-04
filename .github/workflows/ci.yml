@@ -31,3 +31,6 @@ jobs:
 
       - name: Analisi statica del codice (Checkstyle)
         run: mvn package -DskipTests #usiamo questo parametro per soddisfare il requisito della consegna "distinguere facilmente la causa del fallimento"
+
+      - name: Calcolo code coverage e invio a Coveralls
+        run: mvn coveralls:report -DrepoToken=${{ secrets.COVERALLS_TOKEN }}
