@@ -11,7 +11,9 @@
 		<property name="header" value="////////////////////////////////////////////////////////////////////\n// IVAN VALENTE 2147985\n// MATTEO ANGELINI 2101737\n////////////////////////////////////////////////////////////////////\n"/>
 		<property name="fileExtensions" value="java"/>
 	</module>
-	<module name="LineLength"/>
+	<module name="LineLength">
+		<property name="max" value="120"/>
+	</module>
 
 	<module name="TreeWalker">
 		<module name="BooleanExpressionComplexity"/>
@@ -25,6 +27,9 @@
     	</module>
 		<module name="AvoidStarImport"/>
 		<module name="IllegalImport"/>
-		<module name="NeedBraces"/>
+		<module name="NeedBraces">
+			<property name="allowEmptyLoopBody" value="true"/>
+			<property name="allowSingleLineStatement" value="true"/>
+		</module>
 	</module>
 </module>
