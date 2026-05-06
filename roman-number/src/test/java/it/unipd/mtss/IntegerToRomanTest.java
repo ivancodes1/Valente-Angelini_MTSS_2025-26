@@ -5,30 +5,56 @@
 
 package it.unipd.mtss;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 public class IntegerToRomanTest {
-	@Test
-	public void TestOneThroughThree() {
-		String Expected = "";
-		for (int num = 1; num <= 3; ++num) {
-			Expected += "I";
-			String RomanNum = IntegerToRoman.convert(num);
-			assertEquals(Expected, RomanNum);
-		}
-	}
+    @Test
+    public void testNumbersOneToThree() {
+        String expected = "";
+        for (int num = 1; num <= 3; ++num) {
+            expected += "I";
+            String actual = IntegerToRoman.convert(num);
+            assertEquals(expected, actual);
+        }
+    }
 
-	@Test (expected = IllegalArgumentException.class)
-	public void TestLessThanOne() {
-		IntegerToRoman.convert(0);
-	}
+    @Test
+    public void testNumberFour() {
+        int input = 4;
+        String expected = "IV";
+        String actual = IntegerToRoman.convert(input);
+        assertEquals(expected, actual);
+    }
 
-	@Test (expected = IllegalArgumentException.class)
-	public void TestMoreThanThree() {
-		IntegerToRoman.convert(4);
-	}
+    @Test
+    public void testNumberFive() {
+        int input = 5;
+        String expected = "V";
+        String actual = IntegerToRoman.convert(input);
+        assertEquals(expected, actual);
+    }
 
+    @Test
+    public void testNumberSix() {
+        int input = 6;
+        String expected = "VI";
+        String actual = IntegerToRoman.convert(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testZeroThrowsException() {
+        int input = 0;
+        IntegerToRoman.convert(input);
+		//qui l'assert è gestito implicitamente da "(expected = ...)"
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSevenThrowsException() {
+        int input = 7;
+        IntegerToRoman.convert(input);
+		//qui l'assert è gestito implicitamente da "(expected = ...)"
+    }
 }
-//
