@@ -70,7 +70,7 @@ public class IntegerToRomanTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSevenThrowsException() {
+    public void testElevenThrowsException() {
         int input = 11;
         IntegerToRoman.convert(input);
 		//qui l'assert è gestito implicitamente da "(expected = ...)"
