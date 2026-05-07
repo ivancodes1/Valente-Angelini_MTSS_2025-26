@@ -37,9 +37,27 @@ public class IntegerToRomanTest {
     }
 
     @Test
-    public void testNumberSix() {
-        int input = 6;
-        String expected = "VI";
+    public void testNumbersSixToEight() {
+        String expected = "V";
+        for (int num = 6; num <= 8; ++num) {
+            expected += "I";
+            String actual = IntegerToRoman.convert(num);
+            assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void testNumberNine() {
+        int input = 9;
+        String expected = "IX";
+        String actual = IntegerToRoman.convert(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testNumberTen() {
+        int input = 10;
+        String expected = "X";
         String actual = IntegerToRoman.convert(input);
         assertEquals(expected, actual);
     }
@@ -52,8 +70,8 @@ public class IntegerToRomanTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSevenThrowsException() {
-        int input = 7;
+    public void testElevenThrowsException() {
+        int input = 11;
         IntegerToRoman.convert(input);
 		//qui l'assert è gestito implicitamente da "(expected = ...)"
     }
