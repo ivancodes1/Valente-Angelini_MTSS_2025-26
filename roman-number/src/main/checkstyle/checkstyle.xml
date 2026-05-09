@@ -17,7 +17,9 @@
 
 	<module name="TreeWalker">
 		<module name="BooleanExpressionComplexity"/>
-		<module name="CyclomaticComplexity"/>
+		<module name="CyclomaticComplexity">
+			<property name="switchBlockAsSingleDecisionPoint" value="true"/>
+    	</module>
 		<module name="MethodLength">
 			<property name="countEmpty" value="false"/>
 		</module>
