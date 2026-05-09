@@ -8,11 +8,23 @@ package it.unipd.mtss;
 public class IntegerToRoman {
     
     public static String convert(int number) throws IllegalArgumentException {
-        if (number < 1 || number > 50) {
-            throw new IllegalArgumentException(number + " is not valid. Must be > 0 and <= 50");
+        if (number < 1 || number > 100) {
+            throw new IllegalArgumentException(number + " is not valid. Must be > 0 and <= 100");
         }
+        // Uniamo le decine calcolate con le unità (usando il modulo 10)
+        return convertTens(number) + convertUnits(number % 10);
+    }
+
+    // Metodo helper privato: si occupa SOLO delle decine e del 100
+    private static String convertTens(int number) {
         String result = "";
-        if (number == 50) {
+        if (number == 100) {
+            result += "C";
+            number -= 100;
+        } else if (number >= 90) {
+            result += "XC";
+            number -= 90;
+        } else if (number >= 50) {
             result += "L";
             number -= 50;
         } else if (number >= 40) {
@@ -23,15 +35,23 @@ public class IntegerToRoman {
             result += "X";
             number -= 10;
         }
-        if (number % 5 == 4) {
-            result += "I" + ((number == 9) ? "X" : "V");
-        } else {
-            if (number >= 5) {
-                result += "V";
-                number -= 5;
-            }
-            for (int i = 0; i < number; ++i) {
-                result += "I";
+        return result;
+    }
+
+    // Metodo helper privato: si occupa SOLO delle unità
+    private static String convertUnits(int number) {
+        String result = "";
+        if (number > 0) {
+            if (number % 5 == 4) {
+                result += "I" + ((number == 9) ? "X" : "V");
+            } else {
+                if (number >= 5) {
+                    result += "V";
+                    number -= 5;
+                }
+                for (int i = 0; i < number; ++i) {
+                    result += "I";
+                }
             }
         }
         return result;
