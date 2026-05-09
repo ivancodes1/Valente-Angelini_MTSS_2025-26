@@ -11,6 +11,12 @@ public class IntegerToRoman {
         if (number < 1 || number > 100) {
             throw new IllegalArgumentException(number + " is not valid. Must be > 0 and <= 100");
         }
+        // Uniamo le decine calcolate con le unità (usando il modulo 10)
+        return convertTens(number) + convertUnits(number % 10);
+    }
+
+    // Metodo helper privato: si occupa SOLO delle decine e del 100
+    private static String convertTens(int number) {
         String result = "";
         if (number == 100) {
             result += "C";
@@ -29,6 +35,12 @@ public class IntegerToRoman {
             result += "X";
             number -= 10;
         }
+        return result;
+    }
+
+    // Metodo helper privato: si occupa SOLO delle unità
+    private static String convertUnits(int number) {
+        String result = "";
         if (number > 0) {
             if (number % 5 == 4) {
                 result += "I" + ((number == 9) ? "X" : "V");
