@@ -8,20 +8,34 @@ package it.unipd.mtss;
 public class IntegerToRoman {
     
     public static String convert(int number) throws IllegalArgumentException {
-        if (number < 1 || number > 100) {
-            throw new IllegalArgumentException(number + " is not valid. Must be > 0 and <= 100");
+        if (number < 1 || number > 500) {
+            throw new IllegalArgumentException(number + " is not valid. Must be > 0 and <= 500");
         }
-        // Uniamo le decine calcolate con le unità (usando il modulo 10)
-        return convertTens(number) + convertUnits(number % 10);
+        // 
+        return convertHundreds(number) + convertTens(number % 100) + convertUnits(number % 10);
     }
 
-    // Metodo helper privato: si occupa SOLO delle decine e del 100
-    private static String convertTens(int number) {
+    // Metodo helper privato: si occupa SOLO delle centinaia (solo fino a 500)
+    private static String convertHundreds(int number) {
         String result = "";
-        if (number == 100) {
+        if (number >= 500) {
+            result += "D";
+            number -= 500;
+        } else if (number >= 400) {
+            result += "CD";
+            number -= 400;
+        }
+        while (number >= 100) {
             result += "C";
             number -= 100;
-        } else if (number >= 90) {
+        }
+        return result;
+    }
+
+    // Metodo helper privato: si occupa SOLO delle decine
+    private static String convertTens(int number) {
+        String result = "";
+        if (number >= 90) {
             result += "XC";
             number -= 90;
         } else if (number >= 50) {
