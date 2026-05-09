@@ -35,13 +35,17 @@ public class IntegerToRomanTest {
             { 8, "VIII" }, { 9, "IX" }, // unità alte e sottrazione 9
             { 10, "X" }, // decina esatta
             { 14, "XIV" }, { 15, "XV" }, // decina + sottrazione/limite
-            { 19, "XIX" }, { 20, "XX" } // limiti superiori
+            { 19, "XIX" }, { 20, "XX" }, // limiti decine vecchie
+            { 39, "XXXIX" }, // limite massimo prima del cambio lettera
+            { 40, "XL" }, // eccezione sottrazione decine
+            { 44, "XLIV" }, { 49, "XLIX" }, // combinazioni complesse
+            { 50, "L" } // limite superiore attuale
         });
     }
 
     @Test
-    public void testNumbersOneToTwenty() {
-        //qui l'arrange è "implicito": i dati sono già preparati dal costruttore parametrizzato.
+    public void testNumbersOneToFifty() {
+        // qui l'arrange è "implicito": i dati sono già preparati dal costruttore parametrizzato.
         String actual = IntegerToRoman.convert(input);
         assertEquals(expected, actual);
     }
@@ -50,13 +54,13 @@ public class IntegerToRomanTest {
     public void testZeroThrowsException() {
         int outOfBoundsInput = 0;
         IntegerToRoman.convert(outOfBoundsInput);
-        //qui l'assert è gestito implicitamente da "(expected = ...)"
+        // qui l'assert è gestito implicitamente da "(expected = ...)"
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testTwentyOneThrowsException() {
-        int outOfBoundsInput = 21;
+    public void testFiftyOneThrowsException() {
+        int outOfBoundsInput = 51;
         IntegerToRoman.convert(outOfBoundsInput);
-        //qui l'assert è gestito implicitamente da "(expected = ...)"
+        // qui l'assert è gestito implicitamente da "(expected = ...)"
     }
 }
