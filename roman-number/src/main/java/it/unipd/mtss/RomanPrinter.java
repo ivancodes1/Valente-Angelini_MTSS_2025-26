@@ -17,16 +17,16 @@ public class RomanPrinter {
         {" |_______|", "     \\/    ",  " /_/ \\_\\", " |______|", "  \\_____|", " |_____/ ",  " |_|  |_|" }
     };
 
-    public static String AsciiArt(int num) throws IllegalArgumentException {
-        return AsciiArt(IntegerToRoman.convert(num));
+    public static String print(int num) throws IllegalArgumentException {
+        return printAsciiArt(IntegerToRoman.convert(num));
     }
 
-    public static String AsciiArt(String RomanNumber) throws IllegalArgumentException {
-        if (!validate(RomanNumber)) {
-            throw new IllegalArgumentException(RomanNumber + " is not a valid Roman Numeral");
+    private static String printAsciiArt(String romanNumber) throws IllegalArgumentException {
+        if (!validate(romanNumber)) {
+            throw new IllegalArgumentException(romanNumber + " is not a valid Roman Numeral");
         }
         String[] lines = {"", "", "", "", "", ""};
-        for (char c : RomanNumber.toCharArray()) {
+        for (char c : romanNumber.toCharArray()) {
             switch (c) {
                 case 'I':
                     lines[0] += art[0][0];
@@ -91,9 +91,8 @@ public class RomanPrinter {
         return result;
     }
 
-    private static boolean validate(String RomanNumber) {
+    private static boolean validate(String romanNumber) {
         String romanRegex = "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
-        return RomanNumber.matches(romanRegex);
+        return romanNumber.matches(romanRegex);
     }
-    
 }
