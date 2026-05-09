@@ -15,8 +15,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-/* poiché stiamo aumentando i numeri da convertire (e quindi da controllare)
-meglio parametrizzare come visto a lezione per non fare troppi test singoli*/
+/* poiché ci sono tanti numeri da convertire (e quindi da controllare), fare
+tanti test singoli è inefficiente e inadeguato. Meglio quindi parametrizzare
+come visto a lezione*/
 @RunWith(Parameterized.class)
 public class IntegerToRomanTest {
     private int input;
@@ -49,12 +50,16 @@ public class IntegerToRomanTest {
             { 399, "CCCXCIX" }, // limite massimo prima del cambio lettera
             { 400, "CD" }, // eccezione sottrazione centinaia
             { 444, "CDXLIV"}, { 488, "CDLXXXVIII" }, { 499, "CDXCIX"}, // combinazioni complesse post-400
-            { 500, "D"} // limite superiore attuale
+            { 500, "D"}, // limite 500
+            { 501, "DI"}, { 888, "DCCCLXXXVIII"}, { 899, "DCCCXCIX"}, // numeri post-500 e limite pre-900
+            { 900, "CM" }, // eccezione sottrazione 900
+            { 949, "CMXLIX" }, { 999, "CMXCIX" }, // combinazioni complesse post-900
+            { 1000, "M" } // limite superiore assoluto
         });
     }
 
     @Test
-    public void testNumbersOneToFiveHundred() {
+    public void testNumbersOneToOneThousand() {
         // Arrange: implicito, i dati sono già preparati dal costruttore parametrizzato.
         String actual = IntegerToRoman.convert(input);
         assertEquals(expected, actual);
@@ -68,8 +73,8 @@ public class IntegerToRomanTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testFiveHundredOneThrowsException() {
-        int outOfBoundsInput = 501;
+    public void testOneThousandOneThrowsException() {
+        int outOfBoundsInput = 1001;
         IntegerToRoman.convert(outOfBoundsInput);
         // Assert: gestito implicitamente da "(expected = ...)"
     }
