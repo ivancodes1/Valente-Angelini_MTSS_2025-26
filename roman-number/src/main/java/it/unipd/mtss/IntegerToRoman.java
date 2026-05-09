@@ -8,17 +8,22 @@ package it.unipd.mtss;
 public class IntegerToRoman {
     
     public static String convert(int number) throws IllegalArgumentException {
-        if (number < 1 || number > 500) {
-            throw new IllegalArgumentException(number + " is not valid. Must be > 0 and <= 500");
+        if (number < 1 || number > 1000) {
+            throw new IllegalArgumentException(number + " is not valid. Must be > 0 and <= 1000");
         }
-        // 
         return convertHundreds(number) + convertTens(number % 100) + convertUnits(number % 10);
     }
 
-    // Metodo helper privato: si occupa SOLO delle centinaia (solo fino a 500)
+    // Metodo helper privato: si occupa SOLO delle centinaia (fino a 1000)
     private static String convertHundreds(int number) {
         String result = "";
-        if (number >= 500) {
+        if (number == 1000) {
+            result += "M";
+            number -= 1000;
+        } else if (number >= 900) {
+            result += "CM";
+            number -= 900;
+        } else if (number >= 500) {
             result += "D";
             number -= 500;
         } else if (number >= 400) {
