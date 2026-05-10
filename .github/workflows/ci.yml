@@ -1,5 +1,9 @@
 name: Build Pipeline
 
+#forziamo l'uso di Node.js 24
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
   pull_request:
