@@ -22,4 +22,5 @@ Di seguito sono riportati i risultati in tempo reale della Build Automation e de
 All'interno di questo progetto, abbiamo deciso di scrivere tutto il possibile in italiano, essendo il Corso erogato in lingua italiana, tralasciando ovviamente qualche traduzione inadatta per mantenere il linguaggio tecnico (es. "bug").
 Abbiamo inoltre voluto utilizzare l'approccio GitFlow in maniera rigorosa e completa, facendo anche il branch di Hotfix, e usando il Versioning Semantico (SemVer) per nominare le patch.
 Abbiamo voluto usare in maniera precisa l'Issue Tracking System facendo una issue per quasi ogni operazione, associandole sempre ai relativi commit e Pull Request (tramite le keyword "Close" o "Fixed" viste in classe).
+Abbiamo voluto approfondire l'ambito del code coverage per garantire al progetto un buon 100% nel report.
 Infine, per correggere eventuali errori in commit, alcune volte sono stati effettuati dei ```push --force```, allo scopo di mantenere il repository pulito e senza troppi commit inutili.
