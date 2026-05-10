@@ -108,4 +108,12 @@ public class RomanPrinterTest {
         RomanPrinter.print(outOfBoundsInput);
         // Assert: gestito implicitamente da "(expected = ...)"
     }
+
+    @Test
+    public void testUtilityClassConstructor() {
+        // Arrange & Act
+        RomanPrinter printer = new RomanPrinter();
+        // Assert: verifichiamo semplicemente che l'oggetto sia stato creato
+        org.junit.Assert.assertNotNull(printer);
+    }
 }

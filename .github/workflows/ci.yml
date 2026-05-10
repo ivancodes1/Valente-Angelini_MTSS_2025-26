@@ -1,5 +1,9 @@
 name: Build Pipeline
 
+#forziamo l'uso di Node.js 24
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
   pull_request:
@@ -17,10 +21,10 @@ jobs:
       - name: Checkout del codice
         uses: actions/checkout@v4
 
-      - name: Setup Java JDK 11
+      - name: Setup Java JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: maven
 
