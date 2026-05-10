@@ -22,9 +22,6 @@ public class RomanPrinter {
     }
 
     private static String printAsciiArt(String romanNumber) throws IllegalArgumentException {
-        if (!validate(romanNumber)) {
-            throw new IllegalArgumentException(romanNumber + " is not a valid Roman Numeral");
-        }
         String[] lines = {"", "", "", "", "", ""};
         for (char c : romanNumber.toCharArray()) {
             switch (c) {
@@ -89,10 +86,5 @@ public class RomanPrinter {
         String result = "";
         for (String line : lines) result += line + "\n";
         return result;
-    }
-
-    private static boolean validate(String romanNumber) {
-        String romanRegex = "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
-        return romanNumber.matches(romanRegex);
     }
 }

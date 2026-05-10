@@ -78,4 +78,12 @@ public class IntegerToRomanTest {
         IntegerToRoman.convert(outOfBoundsInput);
         // Assert: gestito implicitamente da "(expected = ...)"
     }
+
+    @Test
+    public void testUtilityClassConstructor() {
+        // Arrange & Act
+        IntegerToRoman converter = new IntegerToRoman();
+        // Assert: verifichiamo semplicemente che l'oggetto sia stato creato
+        org.junit.Assert.assertNotNull(converter);
+    }
 }
