@@ -19,8 +19,9 @@ Di seguito sono riportati i risultati in tempo reale della Build Automation e de
 > Per assicurarsi che il badge di Coveralls visualizzi la percentuale più aggiornata, potrebbe essere necessario effettuare una pulizia della cache del browser (```CTRL+F5``` / ```CMD+SHIFT+R```) all'interno di questa scheda.
 
 ## Scelte metodologiche e di sviluppo
-All'interno di questo progetto, abbiamo deciso di scrivere tutto il possibile in italiano, essendo il Corso erogato in lingua italiana, tralasciando ovviamente qualche traduzione inadatta per mantenere il linguaggio tecnico (es. "bug").
-Abbiamo inoltre voluto utilizzare l'approccio GitFlow in maniera rigorosa e completa, facendo anche il branch di Hotfix, e usando il Versioning Semantico (SemVer) per nominare le patch.
-Abbiamo voluto usare in maniera precisa l'Issue Tracking System facendo una issue per quasi ogni operazione, associandole sempre ai relativi commit e Pull Request (tramite le keyword "Close" o "Fixed" viste in classe).
-Abbiamo voluto approfondire l'ambito del code coverage per garantire al progetto un buon 100% nel report.
-Infine, per correggere eventuali errori in commit, alcune volte sono stati effettuati dei ```push --force```, allo scopo di mantenere il repository pulito e senza troppi commit inutili.
+All'interno di questo progetto, abbiamo deciso di scrivere tutto il possibile in italiano, essendo il Corso erogato in lingua italiana, tralasciando ovviamente qualche traduzione inadatta per mantenere il linguaggio tecnico (es. "bug").<br>
+Abbiamo inoltre voluto utilizzare l'approccio GitFlow in maniera rigorosa e completa, facendo anche il branch di Hotfix e due Release, e usando il Versioning Semantico (SemVer) per nominare le patch, così da simulare il più possibile un vero progetto.<br>
+Abbiamo voluto usare in maniera precisa l'Issue Tracking System facendo una issue per quasi ogni operazione, associandole sempre ai relativi commit e Pull Request (tramite le keyword "Close" o "Fixed" viste in classe).<br>
+Abbiamo voluto approfondire l'ambito del code coverage per garantire al progetto un buon 100% nel report.<br>
+La nostra scelta è stata quella di porre la cartella generata dall'archeotipo con Maven "roman-number" e non piazzare direttamente tutto nella root, così da mantenere ordine logico e non mischiare elementi di GitHub (file di Actions, README, ...) con file di implementazione e il POM.<br>
+Infine, per correggere eventuali errori in commit, alcune volte sono stati effettuati dei ```push --force```, allo scopo di mantenere il repository pulito e senza troppi commit inutili.<br>
