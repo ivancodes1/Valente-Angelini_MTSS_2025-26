@@ -17,11 +17,13 @@ public class RomanPrinter {
         {" |_______|", "     \\/    ",  " /_/ \\_\\", " |______|", "  \\_____|", " |_____/ ",  " |_|  |_|" }
     };
 
+    // Metodo print come richiesto dalla consegna
     public static String print(int num) throws IllegalArgumentException {
         return printAsciiArt(IntegerToRoman.convert(num));
     }
 
-    private static String printAsciiArt(String romanNumber) throws IllegalArgumentException {
+    // Metodo printAsciiArt come richiesto dalla consegna
+    private static String printAsciiArt(String romanNumber) {
         String[] lines = {"", "", "", "", "", ""};
         for (char c : romanNumber.toCharArray()) {
             switch (c) {

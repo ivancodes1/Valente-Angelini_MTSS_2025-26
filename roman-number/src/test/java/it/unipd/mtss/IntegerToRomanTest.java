@@ -15,9 +15,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-/* poiché ci sono tanti numeri da convertire (e quindi da controllare), fare
-tanti test singoli è inefficiente e inadeguato. Meglio quindi parametrizzare
-come visto a lezione*/
+/* Poiché ci sono tanti numeri da convertire, facciamo affidamento sulla parametrizzazione 
+per coprire le sezioni "Right" e "Boundaries" del pattern "Right BICEP" in modo efficiente */
 @RunWith(Parameterized.class)
 public class IntegerToRomanTest {
     private int input;
@@ -27,7 +26,7 @@ public class IntegerToRomanTest {
         this.expected = expected;
     }
 
-    // tabella dei dati per la parametrizzazione
+    // Tabella dei dati: copre classi di equivalenza ("Right") e casi limite ("Boundaries")
     @Parameters(name = "Test: convert({0}) = {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
@@ -58,32 +57,71 @@ public class IntegerToRomanTest {
         });
     }
 
+    // Test per soddisfare le sezioni "Right" e "Boundaries"
     @Test
     public void testNumbersOneToOneThousand() {
         // Arrange: implicito, i dati sono già preparati dal costruttore parametrizzato.
-        String actual = IntegerToRoman.convert(input);
-        assertEquals(expected, actual);
+
+        String actual = IntegerToRoman.convert(input); // Act
+
+        assertEquals(expected, actual); // Assert
     }
 
+    // Test per soddisfare la sezione "Error Conditions"
     @Test(expected = IllegalArgumentException.class)
     public void testZeroThrowsException() {
-        int outOfBoundsInput = 0;
-        IntegerToRoman.convert(outOfBoundsInput);
-        // Assert: gestito implicitamente da "(expected = ...)"
+        int outOfBoundsInput = 0; // Arrange
+
+        IntegerToRoman.convert(outOfBoundsInput); // Act
+
+        // Assert: implicito, gestito da (expected = ...)
     }
 
+    // Test per soddisfare la sezione "Error Conditions"
     @Test(expected = IllegalArgumentException.class)
     public void testOneThousandOneThrowsException() {
-        int outOfBoundsInput = 1001;
-        IntegerToRoman.convert(outOfBoundsInput);
-        // Assert: gestito implicitamente da "(expected = ...)"
+        int outOfBoundsInput = 1001; // Arrange
+
+        IntegerToRoman.convert(outOfBoundsInput); // Act
+
+        // Assert: implicito, gestito da (expected = ...)
+    }
+
+    /* Sezione "Inverse Relationship":
+    Non testato: fuori dominio. Le specifiche non richiedono l'implementazione del decodificatore inverso (da Romano ad Arabo).
+    Non scriviamo nemmeno la firma del metodo, così da non abbassare la code coverage.*/
+
+    // Test per soddisfare la sezione "Cross-Check"
+    @Test
+    public void testCrossCheckWithAlternativeLogic() {
+        // Arrange: creiamo il numero 3 con una logica alternativa (concatenazione iterativa)
+        int numberToTest = 3;
+        String expectedCrossCheck = "";
+        for (int i = 0; i < numberToTest; i++) {
+            expectedCrossCheck += "I";
+        }
+        
+        String actual = IntegerToRoman.convert(numberToTest); // Act
+        
+        assertEquals(expectedCrossCheck, actual); // Assert
+    }
+
+    // Test per soddisfare la sezione "Performance Evaluation"
+    @Test(timeout = 500) // JUnit 4 usa 'timeout' per fallire se il metodo impiega più dei millisecondi indicati
+    public void testPerformanceOverEntireDomain() {
+        // Arrange e Act
+        for (int i = 1; i <= 1000; i++) {
+            IntegerToRoman.convert(i);
+        }
+
+        // Assert: implicito, il test passa se termina prima dello scadere del timeout (500ms)
     }
 
     @Test
     public void testUtilityClassConstructor() {
-        // Arrange & Act
-        IntegerToRoman converter = new IntegerToRoman();
-        // Assert: verifichiamo semplicemente che l'oggetto sia stato creato
+        IntegerToRoman converter = new IntegerToRoman(); // Arrange e Act
+
+        // Assert: verifichiamo semplicemente che l'oggetto sia stato creato, per avere così 100% di code coverage
         org.junit.Assert.assertNotNull(converter);
     }
 }
